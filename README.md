@@ -1,0 +1,1 @@
+Flexible slot machine
