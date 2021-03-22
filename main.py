@@ -17,6 +17,15 @@ class Reel:
             min_num_full_turns=0,
             max_num_full_turns=200
     ):
+        """
+
+        :param symbols - list contains reel symbols:
+        :param spin_type - primitive - only stop index, math_sim - and num of full turns, phys_sim
+        use mass momentum, impulse momentum, friction force for realistic simulation (and in each case
+        frontend play big role in realistic simulation:
+        :param min_num_full_turns:
+        :param max_num_full_turns:
+        """
         self.symbols = symbols
         self.symbols_len = len(symbols)
         self.symbols_index = range(symbols)
@@ -56,8 +65,22 @@ class Reel:
 
 class SlotMachine:
 
-    def __init__(self, reils=[Reel(), Reel(), Reel()], paylines=[[0, 1, 2]]):
-        pass
+    def __init__(
+            self,
+            reels=[[Reel(), Reel(), Reel()]],
+            paylines=[[{(0, 0): '7'}, {(0, 1): '7'}, {(0, 2): '7'}]]
+    ):
+        """
+
+        :param reels list of lists (rows) of reels (columns). Frame rows x columns. Complex shapes are
+        not considered:
+        :param paylines, list of lists of dicts. Dict key - (row, column) typle, value - symbol:
+        """
+        self.reels= reels
+        self.max_reels_row_index = len(reels) + 1
+        self.max_reels_column_index = len(reels[0]) + 1
+        self.paylines = paylines
+
 
 
 if __name__ == '__main__':
